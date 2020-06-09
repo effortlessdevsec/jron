@@ -2,10 +2,8 @@ package main
 import ("fmt"
        "bufio"
 	"os"
-        //"os/exec"
 	"sync"
 	"net/http"
-	"io/ioutil"
 	//"github.com/fatih/color"
 	//"github.com/gookit/color"
 	 )
@@ -17,7 +15,6 @@ var wg sync.WaitGroup
 
 
 func main(){
-
 
 work := make(chan string)
 go func(){
@@ -34,7 +31,7 @@ go func(){
 	}()
 
 
-	for i := 0; i < 50 ; i++ {
+	for i := 0; i < 200 ; i++ {
             wg.Add(1)
             //fmt.Println("hello")
             go dowork(work)
@@ -53,14 +50,10 @@ defer wg.Done()
 			continue
 
 }
-defer resp.Body.Close()
-body, err := ioutil.ReadAll(resp.Body)
-if err != nil {
-	fmt.Println("erro")
-}
-fmt.Println(string(body))
+
+
+fmt.Println(http.StatusText(resp.StatusCode),"  " ,resp.StatusCode,"  ",val2)	
 
 	}
-
 	
 }
