@@ -4,6 +4,7 @@ import ("fmt"
 	"os"
 	"sync"
 	"net/http"
+	"io/ioutil"
 	//"github.com/fatih/color"
 	//"github.com/gookit/color"
 	 )
@@ -31,7 +32,7 @@ go func(){
 	}()
 
 
-	for i := 0; i < 200 ; i++ {
+	for i := 0; i < 50 ; i++ {
             wg.Add(1)
             //fmt.Println("hello")
             go dowork(work)
@@ -50,10 +51,16 @@ defer wg.Done()
 			continue
 
 }
-
-
-fmt.Println(http.StatusText(resp.StatusCode),"  " ,resp.StatusCode,"  ",val2)	
+defer resp.Body.Close()
+body, err := ioutil.ReadAll(resp.Body)
+if err != nil {
+	fmt.Println("erro")
+}
+fmt.Println(string(body))
 
 	}
+
+
+
 	
 }
