@@ -14,4 +14,4 @@ go get github.com/effortlessdevsec/jron
 
 ## Screenshots
 
-![Sublist3r](http://www.secgeek.net/images/Sublist3r.png "Sublist3r in action")
+
